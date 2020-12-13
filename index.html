@@ -1,0 +1,50 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+ <!-- Add Firebase products that you want to use -->
+ <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDeFLZ45rUcTMDDs9SRzVIUOvYFVWuM4V8",
+    authDomain: "fiberauth.firebaseapp.com",
+    databaseURL: "https://fiberauth.firebaseio.com",
+    projectId: "fiberauth",
+    storageBucket: "fiberauth.appspot.com",
+    messagingSenderId: "683776344414",
+    appId: "1:683776344414:web:02bef22ea03c44a9f4cfcf",
+    measurementId: "G-B1S9DV04PK"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  firebase.auth().signInWithEmailAndPassword('skodagoda@apm.mc', 'sac1234').catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(error)
+    // ...
+  });
+
+  // firebase.auth().currentUser.getToken(/* forceRefresh */ true).then(function (idToken) {
+  //   console.log('id', idToken)
+  // }).catch(function (error) {
+  //   console.log('error')
+  // });
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        firebase.auth().currentUser.getIdToken().then(data => console.log(data))
+    } else {
+        console.log('onAuthStateChanged else')
+    }
+})
+</script>
